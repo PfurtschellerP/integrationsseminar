@@ -1,0 +1,2 @@
+- noch company mentions hinzufügen
+- noch Nach Volltext Namen der CEOs suchen (dafür eventuell ein paar CEOs rauwerfen)
