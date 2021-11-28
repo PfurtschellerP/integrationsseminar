@@ -56,6 +56,38 @@ app.get('/apple', async (req, res) => {
     data: JSON.stringify(await dataGetter.destructureDocuments('apple')),
   });
 });
+app.get('/meta', async (req, res) => {
+  res.render('meta', {
+    pageTitle: 'Meta',
+    data: JSON.stringify(
+      await dataGetter.destructureDocuments('meta_platforms')
+    ),
+  });
+});
+app.get('/microsoft', async (req, res) => {
+  res.render('microsoft', {
+    pageTitle: 'Microsoft',
+    data: JSON.stringify(await dataGetter.destructureDocuments('microsoft')),
+  });
+});
+app.get('/alphabet', async (req, res) => {
+  res.render('alphabet', {
+    pageTitle: 'Alphabet',
+    data: JSON.stringify(await dataGetter.destructureDocuments('alphabet')),
+  });
+});
+app.get('/amazon', async (req, res) => {
+  res.render('amazon', {
+    pageTitle: 'Amazon',
+    data: JSON.stringify(await dataGetter.destructureDocuments('amazon')),
+  });
+});
+app.get('/tesla', async (req, res) => {
+  res.render('tesla', {
+    pageTitle: 'Tesla',
+    data: JSON.stringify(await dataGetter.destructureDocuments('tesla')),
+  });
+});
 
 // serve static ressources
 app.use(express.static('public'));
