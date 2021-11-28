@@ -1,0 +1,19 @@
+<div
+  class='p-6 m-3 max-w-auto mx-auto bg-white flex flex-wrap items-center rounded-xl shadow-md space-x-4'
+>
+  <h3 class='text-xl'>Stock Price &lt;-> Tweets about the Company</h3>
+  <canvas id='stockPriceToCompanyTweets' class='w-max'></canvas>
+</div>
+
+<div
+  class='p-6 m-3 max-w-auto mx-auto bg-white flex flex-wrap items-center rounded-xl shadow-md space-x-4'
+>
+  <h3 class='text-xl'>Pearson Corelation</h3>
+  <p id='correlationCoeficcient'></p>
+</div>
+<script>
+  const data =
+  {{{data}}};
+</script>
+<script type='module' src='calculateCorrelation.js'></script>
+<script src='charts/stockPriceToCompanyTweets.js'></script>

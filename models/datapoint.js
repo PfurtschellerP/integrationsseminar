@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const dataPoint = new mongoose.Schema({
-  ceo: {
+  ceoName: {
     type: String,
     required: true,
   },
@@ -9,11 +9,23 @@ const dataPoint = new mongoose.Schema({
     type: String,
     required: true,
   },
+  company: {
+    type: String,
+    required: true,
+  },
   time: {
     type: Date,
     required: true,
   },
-  twitterMentions: {
+  ceoUserNameMentions: {
+    type: Number,
+    required: true,
+  },
+  ceoFullNameMentions: {
+    type: Number,
+    required: true,
+  },
+  companyNameMentions: {
     type: Number,
     required: true,
   },

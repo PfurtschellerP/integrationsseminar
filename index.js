@@ -3,12 +3,22 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import { engine } from 'express-handlebars';
+import * as dataGetter from './dataGetter.js';
+
+// define ports
+const port = 80;
 
 // initialize environment variables
 dotenv.config();
 
 // create app
 const app = express();
+
+// activate handlebars page renderer
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
 
 // import scheduled jobs
 import scheduler from './scheduler.js';
@@ -31,7 +41,26 @@ app.use(
 );
 app.use(cors());
 
-// root get
-app.get('/', (req, res) => {
-  res.send('Datensammler');
+// Views
+app.get('/', async (req, res) => {
+  res.render('home', {
+    records: await dataGetter.getRecordCount(),
+    approxDataPoints: (await dataGetter.getRecordCount()) * 2,
+    pageTitle: 'Home',
+  });
+});
+
+app.get('/apple', async (req, res) => {
+  res.render('apple', {
+    pageTitle: 'Apple',
+    data: JSON.stringify(await dataGetter.destructureDocuments('apple')),
+  });
+});
+
+// serve static ressources
+app.use(express.static('public'));
+
+// Listen
+app.listen(port, () => {
+  console.log(`Listening at http://localhost:${port}`);
 });

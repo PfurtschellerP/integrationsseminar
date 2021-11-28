@@ -1,6 +1,7 @@
-export default {
-  muskTesla: {
-    frequency: '* * * * *',
-    handler: './handlers/retrieveData.js',
-  },
-};
+// export default {
+//   getData: {
+//     frequency: '* * * * */5',
+//     handler: './handlers/retrieveData.js',
+//   },
+// };
+export default {};

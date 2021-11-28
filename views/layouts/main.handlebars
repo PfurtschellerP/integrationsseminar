@@ -1,0 +1,25 @@
+<html class='h-full bg-gray-100'>
+  <head>
+    <meta charset='utf-8' />
+    <title>Integrationsseminar | Analyse</title>
+    <link
+      href='https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'
+      rel='stylesheet'
+    />
+  </head>
+  <body class='h-full'>
+    <!-- Chart JS -->
+    <script
+      src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js'
+    ></script>
+    <div class='min-h-full'>
+      {{> header}}
+      <main>
+        <div class='max-w-7xl mx-auto py-6 sm:px-6 lg:px-8'>
+          {{{body}}}
+        </div>
+      </main>
+    </div>
+    <script src='mobileMenu.js'></script>
+  </body>
+</html>

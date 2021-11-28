@@ -7,9 +7,9 @@ import Datapoint from '../models/datapoint.js';
 
 const client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN);
 
-async function retrieveTwitterMentions(accountName) {
-  // request tweets about @ account name
-  const tweetCount = await client.v2.tweetCountRecent(`@${accountName}`, {
+async function retrieveTweets(searchQuery) {
+  // request tweets matching the query
+  const tweetCount = await client.v2.tweetCountRecent(searchQuery, {
     granularity: 'minute',
   });
   // filter tweets from today
@@ -37,13 +37,42 @@ async function retrieveStockPrice(stock) {
 export default async function () {
   // querys to work on
   const queryData = [
-    { ceo: 'elonmusk', stock: 'tesla' },
-    { ceo: 'tim_cook', stock: 'apple' },
-    { ceo: 'satyanadella', stock: 'microsoft' },
-    { ceo: 'Dan_Schulman', stock: 'paypal' },
-    { ceo: 'finkd', stock: 'meta_platforms' },
-    { ceo: 'sundarpichai', stock: 'alphabet' },
-    { ceo: 'ajassy', stock: 'amazon' },
+    {
+      ceoUserName: '@elonmusk',
+      ceoFullName: 'Elon Musk',
+      stock: 'tesla',
+      company: 'Tesla',
+    },
+    {
+      ceoUserName: '@tim_cook',
+      ceoFullName: 'Tim Cook',
+      stock: 'apple',
+      company: 'Apple',
+    },
+    {
+      ceoUserName: '@satyanadella',
+      ceoFullName: 'Satya Nadella',
+      stock: 'microsoft',
+      company: 'Microsoft',
+    },
+    {
+      ceoUserName: '@finkd',
+      ceoFullName: 'Mark Zuckerberg',
+      stock: 'meta_platforms',
+      company: 'Meta',
+    },
+    {
+      ceoUserName: '@sundarpichai',
+      ceoFullName: 'Sundar Pichai',
+      stock: 'alphabet',
+      company: 'Alphabet',
+    },
+    {
+      ceoUserName: '@ajassy',
+      ceoFullName: 'Andy Jassy',
+      stock: 'amazon',
+      company: 'Amazon',
+    },
   ];
 
   // Log the current time
@@ -62,20 +91,29 @@ export default async function () {
     const element = queryData[index];
     console.log(element);
     // get data
-    let twitterMentions = await retrieveTwitterMentions(element.ceo);
+    let ceoUserNameMentions = await retrieveTweets(element.ceoUserName);
+    let ceoFullNameMentions = await retrieveTweets(element.ceoFullName);
+    let companyNameMentions = await retrieveTweets(element.company);
     let stockPrice = await retrieveStockPrice(element.stock);
     // log data
     console.log(
-      `Data Download ${index + 1}: ${element.ceo} and ${element.stock}`
+      `Data Download ${index + 1}: ${element.ceoFullName} and ${
+        element.company
+      }`
     );
-    console.log(`-> Twitter: ${twitterMentions}`);
+    console.log(`-> CEO Username Mentions: ${ceoUserNameMentions}`);
+    console.log(`-> CEO Full Name Mentions: ${ceoFullNameMentions}`);
+    console.log(`-> Company Name Mentions: ${companyNameMentions}`);
     console.log(`-> Stock: ${stockPrice}`);
     // create datapoint
     const dataPoint = new Datapoint({
-      ceo: element.ceo,
+      ceoName: element.ceoFullName,
+      company: element.company,
       stock: element.stock,
       time: currentTime,
-      twitterMentions: twitterMentions,
+      ceoUserNameMentions: ceoUserNameMentions,
+      ceoFullNameMentions: ceoFullNameMentions,
+      companyNameMentions: companyNameMentions,
       stockPrice: stockPrice,
     });
     // save datapoint to the database
