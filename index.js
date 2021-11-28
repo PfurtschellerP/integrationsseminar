@@ -7,7 +7,7 @@ import { engine } from 'express-handlebars';
 import * as dataGetter from './dataGetter.js';
 
 // define ports
-const port = 80;
+const port = 8080;
 
 // initialize environment variables
 dotenv.config();
