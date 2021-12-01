@@ -9,11 +9,15 @@ const client = new TwitterApi(process.env.TWITTER_BEARER_TOKEN);
 
 async function retrieveTweets(searchQuery) {
   // request tweets matching the query
-  const tweetCount = await client.v2.tweetCountRecent(searchQuery, {
-    granularity: 'minute',
-  });
-  // filter tweets from today
-  return tweetCount.data[tweetCount.data.length - 1].tweet_count;
+  try {
+    const tweetCount = await client.v2.tweetCountRecent(searchQuery, {
+      granularity: 'minute',
+    });
+    // filter tweets from today
+    return tweetCount.data[tweetCount.data.length - 1].tweet_count;
+  } catch (err) {
+    return err;
+  }
 }
 
 async function retrieveStockPrice(stock) {
