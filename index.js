@@ -52,13 +52,13 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/apple', async (req, res) => {
-  res.render('apple', {
+  res.render('analysis', {
     pageTitle: 'Apple',
     data: JSON.stringify(await dataGetter.destructureDocuments('apple')),
   });
 });
 app.get('/meta', async (req, res) => {
-  res.render('meta', {
+  res.render('analysis', {
     pageTitle: 'Meta',
     data: JSON.stringify(
       await dataGetter.destructureDocuments('meta_platforms')
@@ -66,25 +66,25 @@ app.get('/meta', async (req, res) => {
   });
 });
 app.get('/microsoft', async (req, res) => {
-  res.render('microsoft', {
+  res.render('analysis', {
     pageTitle: 'Microsoft',
     data: JSON.stringify(await dataGetter.destructureDocuments('microsoft')),
   });
 });
 app.get('/alphabet', async (req, res) => {
-  res.render('alphabet', {
+  res.render('analysis', {
     pageTitle: 'Alphabet',
     data: JSON.stringify(await dataGetter.destructureDocuments('alphabet')),
   });
 });
 app.get('/amazon', async (req, res) => {
-  res.render('amazon', {
+  res.render('analysis', {
     pageTitle: 'Amazon',
     data: JSON.stringify(await dataGetter.destructureDocuments('amazon')),
   });
 });
 app.get('/tesla', async (req, res) => {
-  res.render('tesla', {
+  res.render('analysis', {
     pageTitle: 'Tesla',
     data: JSON.stringify(await dataGetter.destructureDocuments('tesla')),
   });

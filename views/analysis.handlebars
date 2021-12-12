@@ -1,47 +1,61 @@
+<!-- multi-line chart -->
 <div
   class='p-6 m-3 max-w-auto mx-auto bg-white flex flex-wrap items-center rounded-xl shadow-md space-x-4'
 >
-  <h3 class='text-xl'>Stock Price &lt;-> Tweets about the Company</h3>
+  <h3 class='text-2xl text-center w-full'>Multi-Line Chart</h3>
   <canvas id='stockPriceToCompanyTweets' class='w-max'></canvas>
 </div>
+
+<!-- scatter plot -->
 <div
   class='p-6 m-3 max-w-auto mx-auto bg-white flex flex-wrap items-center rounded-xl shadow-md space-x-4'
 >
-  <h3 class='text-xl'>Stock Price &lt;-> Tweets about the Company</h3>
+  <h3 class='text-2xl text-center w-full'>Scatter Plot</h3>
   <canvas id='stockPriceToCompanyTweetsScatter' class='w-max'></canvas>
 </div>
 
+<!-- pearson correlation -->
 <div class='p-6 m-3 max-w-auto mx-auto bg-white rounded-xl shadow-md space-x-4'>
-  <h3 class='text-xl w-100'>Pearson Corelation</h3>
+  <h3 class='text-2xl w-full text-center'>Pearson Corelation</h3>
   <section
     class='max-w-auto mx-auto grid grid-cols-2 grid-rows-2 md:grid-rows-1 items-center space-x-4'
   >
     <div
       class='m-6 p-6 bg-red-500 rounded-xl shadow-md text-white text-l col-span-2 md:col-span-1'
     >
-      <h4>pcorr</h4>
+      <h4 class='text-xl'>pcorr</h4>
       <p id='pcorr'></p>
     </div>
     <div
       class='m-6 p-6 bg-blue-500 rounded-xl shadow-md text-white text-l col-span-2 md:col-span-1'
     >
-      <h4>p-value</h4>
+      <h4 class='text-xl'>p-value</h4>
       <p id='pValue'></p>
     </div>
   </section>
 </div>
 
+<!-- full stdlib output -->
 <div class='p-6 m-3 max-w-auto mx-auto bg-white rounded-xl shadow-md space-x-4'>
-  <h3 class='text-xl w-100'>Full @StdLib/stats Output</h3>
-  <p id='correlationCoeficcient'></p>
+  <h3 class='text-2xl w-full text-center'>Full @StdLib/stats Output</h3>
+  <pre>
+    <code
+      class='p-4 block rounded-xl language-json'
+      id='correlationFullOutput'
+    ></code>
+  </pre>
 </div>
 
+<!-- Handing over the data retrieved from the backend to our "frontend javascript" -->
 <script>
   const data =
   {{{data}}};
 </script>
 <!-- Replace the placeholder fields with the corralation -->
-<script type='module' src='calculateCorrelation.js'></script>
+<script type='module' src='handleCorrelation.js'></script>
 <!-- Chart.js Charts -->
 <script src='charts/stockPriceToCompanyTweets.js'></script>
 <script src='charts/stockPriceToCompanyTweetsScatterPlot.js'></script>
+<!-- highlight.js for syntax highlighting in code -->
+<script src='highlight.js'></script>
+<script>hljs.highlightAll();</script>
