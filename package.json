@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "gatherData": "node index.js datagather"
   },
   "author": "",
   "license": "ISC",

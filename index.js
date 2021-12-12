@@ -23,8 +23,11 @@ app.set('views', './views');
 // import scheduled jobs
 import scheduler from './scheduler.js';
 import scheduledJobs from './handlers/jobs.js';
-// deactivate gata gatherer
-// scheduler.initCrons(scheduledJobs);
+
+// activate sheduled jobs for data gathering if process argument is set (see package.json)
+if (process.argv.slice(2) == 'datagather') {
+  scheduler.initCrons(scheduledJobs);
+}
 
 // connect to db
 mongoose.connect(process.env.MONGO_CONNECTION, {
