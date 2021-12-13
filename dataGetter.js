@@ -1,8 +1,6 @@
 import Datapoint from './models/datapoint.js';
 import stats from '@stdlib/stats';
 
-const analysisStartDate = new Date('2021-11-29T10:30:00');
-
 export async function getRecordCount() {
   // count and return documents in database
   // for this, use same aggregate filters as below, but group the results and count them
